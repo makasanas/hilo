@@ -188,7 +188,7 @@ body {
   height: 20px;
   padding: 2px 0px;
   border-radius: 4px;
-  -webkit-animation: animateThis 10s ease-in;
+  -webkit-animation: animateThis 10s linear;
   -webkit-animation-fill-mode: forwards;
 }
 @-webkit-keyframes animateThis {
@@ -284,6 +284,7 @@ body {
   overflow: hidden;
   transition: all 0.5s ease;
   cursor: pointer;
+  min-height: 90px;
 }
 
 .higher-content .top-shade {
@@ -391,28 +392,75 @@ body {
 .bet-content .btn-wrapper .bet-btn:hover {
   background-color: #607d8b;
 }
+
+
 .flip-box-inner{
-  position: relative;
+  position: absolute;
   width: 100%;
   height: 100%;
-  transition: transform 0.8s;
+  transition: left 0.8s, top 0.8s ;
   transform-style: preserve-3d;
+  top: 0;
+  z-index: 98;
+  left:0;
+  opacity: 1;
+}
+.flip-box-inner:nth-of-type(1){
   z-index: 99;
 }
-.flip-box-inner.active{
-  transform: rotateY(360deg);
+.flip-box-inner.revealed{
+  -webkit-animation: fipped 0.5s ease-in;
+  left: 0%;
+  transform: rotateY(0deg);
+  z-index: 99;
 }
+@-webkit-keyframes fipped {
+  0% {
+    left: 0%;
+    transform: rotateY(180deg);
+  }
+  50%{
+    left: -50%;
+  }
+  100% {
+    left: 0%;
+    transform: rotateY(0deg)
+  }
+  }
+.flip-box-inner.leave{
+  -webkit-animation: leave 0.5s ease-in;
+  left: -1000px;
+  top: -1000px;
+}
+
+@-webkit-keyframes leave {
+  0% {
+    left: 0%;
+    top:0%;
+  }
+  100% {
+    left: -1000px;
+  top: -1000px;
+
+  }
+  }
+
 .card {
   border-radius: 10px;
-  box-shadow: 0 0 0.2em 0.1em rgba(16, 16, 20, 0.3);
   padding: 10px;
   background: white;
   height: 100%;
-  position: relative;
   min-height: 338px;
   z-index: 99;
+  border: 3px solid #607d8b;
+  width: 100%;
   backface-visibility: hidden;
+  transform: rotateY(180deg);
 }
+.flip-box-inner:nth-of-type(1) .card{
+  transform: rotateY(0deg);
+}
+
 .cardbackside{
   border-radius: 10px;
   box-shadow: 0 0 0.2em 0.1em rgba(16, 16, 20, 0.3);
@@ -420,9 +468,11 @@ body {
   top:0px;
   height: 100%;
   width: 100%;
+  border: 5px solid #607d8b;
   z-index: 98;
   background: #999; 
-  transform: rotateY(360deg);
+  transform: rotateY(180deg);
+  background-image: url(./cardBg.png);
 }
 .backCard{
   border-radius: 10px;

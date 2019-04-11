@@ -4,6 +4,7 @@ import { isEmpty } from 'ramda'
 import Users from './uielements/svg/users'
 import Button from './button'
 import Card from './card'
+import uuid from 'uuid/v4';
 
 export default class Main extends Component {
   state = {
@@ -14,7 +15,36 @@ export default class Main extends Component {
     disable: true,
     updateTimer: false,
     error: false,
-    show: false,
+    leave: false,
+    cardReveal: false,
+    flip: false,
+    cardsArray: [
+      {
+        type: 'red',
+        name: '2',
+        id: 1
+      },
+      {
+        type: 'red',
+        name: '3',
+        id: 2
+      },
+      {
+        type: 'red',
+        name: '4',
+        id: 3
+      },
+      {
+        type: 'red',
+        name: '5',
+        id: 4
+      },
+      {
+        type: 'red',
+        name: '6',
+        id: 5
+      }
+    ],
     low: {
       lowRange: " ",
       lowProbability: "",
@@ -83,9 +113,28 @@ export default class Main extends Component {
   }
 
   changeCard = () => {
+    this.setState({ cardReveal: true })
+
     // Generating new card
     const cardId = generateNewCard();
     const card = cards.find(card => card.id === cardId)
+
+    let cardsArray = this.state.cardsArray;
+
+    cardsArray[0].leave = true;
+    cardsArray[0].reveal = true;
+
+    cardsArray[1].type = card.type;
+    cardsArray[1].name = card.name;
+    cardsArray[1].id = card.id;
+
+    setTimeout(() => {
+      cardsArray[1].reveal = true;
+    }, 1);
+
+    this.setState({
+      cardsArray: cardsArray
+    })
 
     // calculate the betting ammount
     let { betAmmount, bet, totalMoney } = { ...this.state }
@@ -100,16 +149,28 @@ export default class Main extends Component {
       }
       this.setState({ totalMoney: score })
     }
-    this.timeoutId = setTimeout(function () {
-      this.setState({ show: true });
-    }.bind(this), 1000);
 
     this.inputClear();
 
     this.changeRange(card.name);
     // disable all buttons & clear prediction
     this.setState({ card, disable: false, bet: {} })
+
+
+    setTimeout(() => {
+      cardsArray.shift();
+      cardsArray.push({
+        type: 'red',
+        name: '6',
+        id: 5
+      })
+      this.setState({ cardsArray: cardsArray });
+      cardsArray[0].reveal = false;
+      console.log(cardsArray);
+    }, 200);
   }
+
+
 
   changeRange(cardNumber) {
     const cards = ["2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", "A"]
@@ -138,8 +199,8 @@ export default class Main extends Component {
 
     let lowRange = lowArray.length ? lowArray.length != 1 ? `${lowArray[0]}-${lowArray[lowArray.length - 1]}` : `${lowArray[0]}` : '';
     let highRange = highArray.length ? highArray.length != 1 ? ` ${highArray[0]}-${highArray[highArray.length - 1]}` : `${highArray[0]}` : '';
-    let lowProbability = lowArray.length ? `${lowArray.length * 8}%` : '';
-    let highProbability = highArray.length ? `${highArray.length * 8}%` : '';
+    let lowProbability = lowArray.length ? `${Math.round(lowArray.length * 7.40)}%` : '';
+    let highProbability = highArray.length ? `${Math.round(highArray.length * 7.40)}%` : '';
     let lowMulti = lowArray.length ? `${Math.round(13 / lowArray.length * 100) / 100}x` : '';
     let highMulti = highArray.length ? `${Math.round(13 / highArray.length * 100) / 100}x` : '';
 
@@ -151,8 +212,9 @@ export default class Main extends Component {
   }
 
   render() {
-    const { disable, error, highRange, lowRange, lowProbability, highProbability, lowMulti, highMulti } = this.state
     console.log(this.state.card)
+    console.log(this.state.leave)
+    const { disable, error, highRange, lowRange, lowProbability, highProbability, lowMulti, highMulti, cardsArray, leave, cardReveal } = this.state
     return (
       <section>
         <div className='container'>
@@ -338,11 +400,10 @@ export default class Main extends Component {
               </div>
             </div>
             <div className='card-content center-content' >
-              <div className={this.state.show ? 'flip-box-inner active' : 'flip-box-inner'}>
-                <Card {...this.state.card} />
-                <div className='cardbackside'>
-                </div>
-              </div>
+              {cardsArray.map((card, index) => (
+                <Card key={uuid()} {...card} />
+              ))}
+              {/* <Card {...this.state.card} /> */}
               {/* <div className='backCard'></div>
               <div className='backCard n1'></div>
               <div className='backCard n2'></div>
@@ -471,7 +532,6 @@ class Timer extends PureComponent {
 
   startInterval = () => {
     this.setState({ time: 0 })
-    this.setState({ show: true });
     this.interval = setInterval(() => {
       let time = ++this.state.time
       this.setState({ time })
