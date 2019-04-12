@@ -20,7 +20,7 @@ self.__precacheManifest = [
     "url": "/hilo/static/css/main.1c76e1b3.chunk.css"
   },
   {
-    "revision": "a8c49e8b550c2ebe57bf5b2909eaa43d",
+    "revision": "0899073ea48a45d6b9da9ee681f8f7af",
     "url": "/hilo/index.html"
   }
 ];
