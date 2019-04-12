@@ -8,7 +8,7 @@ self.__precacheManifest = [
     "url": "/hilo/static/js/runtime~main.5595e27f.js"
   },
   {
-    "revision": "2d6f6e2a3a038b36a390",
+    "revision": "668864779951ec3085bd",
     "url": "/hilo/static/js/main.400982cc.chunk.js"
   },
   {
@@ -16,11 +16,11 @@ self.__precacheManifest = [
     "url": "/hilo/static/js/2.366795e7.chunk.js"
   },
   {
-    "revision": "2d6f6e2a3a038b36a390",
-    "url": "/hilo/static/css/main.ed290d91.chunk.css"
+    "revision": "668864779951ec3085bd",
+    "url": "/hilo/static/css/main.1c76e1b3.chunk.css"
   },
   {
-    "revision": "06b3644057bc361cd121bdab6da750c2",
+    "revision": "a8c49e8b550c2ebe57bf5b2909eaa43d",
     "url": "/hilo/index.html"
   }
 ];
