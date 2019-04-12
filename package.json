@@ -2,6 +2,7 @@
   "name": "game",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://makasanas.github.io/hilo/",
   "dependencies": {
     "ramda": "^0.26.1",
     "react": "^16.8.6",
