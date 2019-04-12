@@ -1,5 +1,5 @@
 {
-  "main.css": "/hilo/static/css/main.ed290d91.chunk.css",
+  "main.css": "/hilo/static/css/main.1c76e1b3.chunk.css",
   "main.js": "/hilo/static/js/main.400982cc.chunk.js",
   "main.js.map": "/hilo/static/js/main.400982cc.chunk.js.map",
   "runtime~main.js": "/hilo/static/js/runtime~main.5595e27f.js",
@@ -7,8 +7,8 @@
   "static/js/2.366795e7.chunk.js": "/hilo/static/js/2.366795e7.chunk.js",
   "static/js/2.366795e7.chunk.js.map": "/hilo/static/js/2.366795e7.chunk.js.map",
   "index.html": "/hilo/index.html",
-  "precache-manifest.6ef1f5510089f76f5896b2608a88e4e2.js": "/hilo/precache-manifest.6ef1f5510089f76f5896b2608a88e4e2.js",
+  "precache-manifest.272b330e273a6b8c8c0145841a0d1adc.js": "/hilo/precache-manifest.272b330e273a6b8c8c0145841a0d1adc.js",
   "service-worker.js": "/hilo/service-worker.js",
-  "static/css/main.ed290d91.chunk.css.map": "/hilo/static/css/main.ed290d91.chunk.css.map",
+  "static/css/main.1c76e1b3.chunk.css.map": "/hilo/static/css/main.1c76e1b3.chunk.css.map",
   "static/media/logo.svg": "/hilo/static/media/logo.5d5d9eef.svg"
 }
